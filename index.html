@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseManager - サポート</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section h3 {
+            font-size: 1.3em;
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .faq-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #0c5460;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #0c5460;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .contact-section a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+
+        .contact-section a:hover {
+            opacity: 0.8;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content, header {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .links {
+                flex-direction: column;
+            }
+
+            .links a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 ExpenseManager</h1>
+            <p>シンプルな支出管理アプリ - サポート＆ガイド</p>
+        </header>
+
+        <div class="content">
+            <div class="breadcrumb">ホーム > サポート</div>
+
+            <!-- ========== 使い方ガイド ========== -->
+            <div class="section">
+                <h2>📖 使い方ガイド</h2>
+
+                <h3>基本的な使い方</h3>
+                <p>ExpenseManagerは3つのタブで構成されています。</p>
+
+                <table>
+                    <tr>
+                        <th>タブ</th>
+                        <th>機能</th>
+                        <th>説明</th>
+                    </tr>
+                    <tr>
+                        <td>入力 (➕)</td>
+                        <td>支出を記録</td>
+                        <td>毎日の支出を入力します。日付、金額、カテゴリー、メモを記録できます。</td>
+                    </tr>
+                    <tr>
+                        <td>統計 (📊)</td>
+                        <td>支出を分析</td>
+                        <td>月別の支出を円グラフや日別内訳で視覚的に確認できます。</td>
+                    </tr>
+                    <tr>
+                        <td>設定 (⚙️)</td>
+                        <td>カテゴリー管理</td>
+                        <td>カテゴリーの追加・削除や自分好みのカスタマイズができます。</td>
+                    </tr>
+                </table>
+
+                <h3>支出を入力する</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li><strong>「入力」タブ</strong>をタップします</li>
+                    <li><strong>日付を選択</strong>します（デフォルトは今日の日付）</li>
+                    <li><strong>大分類を選択</strong>します（例：「食費」「交通費」）</li>
+                    <li><strong>中分類を選択</strong>します（例：「スーパー」「電車」）</li>
+                    <li><strong>金額を入力</strong>します（¥記号は自動で付きます）</li>
+                    <li><strong>メモ（任意）</strong>を入力します（店名やレシート番号など）</li>
+                    <li><strong>「支出を追加」</strong>ボタンをタップします</li>
+                </ol>
+
+                <div class="info">
+                    💡 <strong>ヒント:</strong> 金額の入力時に3桁区切りが自動で挿入されます。「1000」と入力すると「1,000」と表示されます。
+                </div>
+
+                <h3>支出を分析する</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li><strong>「統計」タブ</strong>をタップします</li>
+                    <li>月の「◀」「▶」ボタンで月を切り替えます</li>
+                    <li><strong>円グラフ</strong>で支出内訳を確認します</li>
+                    <li><strong>日別支出</strong>で毎日の支出を確認します</li>
+                </ol>
+
+                <div class="info">
+                    💡 <strong>ヒント:</strong> 円グラフの凡例から、カテゴリー名、金額、パーセンテージが一度に確認できます。
+                </div>
+
+                <h3>カテゴリーをカスタマイズする</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li><strong>「設定」タブ</strong>をタップします</li>
+                    <li><strong>「カテゴリーを追加」</strong>ボタンをタップします</li>
+                    <li>大分類、中分類名、アイコン、色を選択します</li>
+                    <li><strong>「カテゴリーを追加」</strong>をタップして保存します</li>
+                </ol>
+
+                <div class="warning">
+                    ⚠️ <strong>注意:</strong> カテゴリーを削除すると復元できません。削除前に確認してください。
+                </div>
+            </div>
+
+            <!-- ========== よくある質問 ========== -->
+            <div class="section">
+                <h2>❓ よくある質問 (FAQ)</h2>
+
+                <div class="faq-item">
+                    <strong>Q: データはどこに保存されますか？</strong>
+                    すべてのデータはあなたのiPhone/iPad内に保存されます。クラウドやサーバーに送信されることはありません。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: 完全に無料ですか？</strong>
+                    はい、ExpenseManagerは完全無料です。広告やアプリ内課金はありません。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: iCloud Backupで自動的にバックアップされますか？</strong>
+                    はい、iCloud Backupを有効にしている場合、すべてのデータが自動的にバックアップされます。新しいデバイスにデータを移動する際は、iCloud Backupから復元できます。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: 複数の端末でデータを同期できますか？</strong>
+                    現在、各デバイスで独立して動作します。複数端末同期機能は今後の拡張機能として検討中です。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: データを削除することはできますか？</strong>
+                    はい、個別に支出項目を左スライプして削除できます。すべてのデータをリセットしたい場合は「設定」タブから実行できます。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: iPhone、iPadの両方で使えますか？</strong>
+                    はい、iPhone、iPad、およびすべてのスクリーンサイズで最適に表示されます。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: ダークモードに対応していますか？</strong>
+                    はい、自動的にiPhoneのダークモード設定に対応します。夜間の使用でも目に優しい表示になります。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: 日本語以外の言語に対応していますか？</strong>
+                    はい、英語にも対応しており、iPhone設定の言語に応じて自動的に切り替わります。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: オフラインで使用できますか？</strong>
+                    はい、完全にオフラインで動作します。ネットワーク接続は不要です。
+                </div>
+
+                <div class="faq-item">
+                    <strong>Q: 過去のデータを編集できますか？</strong>
+                    現在のバージョンでは、過去のデータの直接編集には対応していません。編集が必要な場合は、古いデータを削除して再入力してください。（今後の機能として検討中です）
+                </div>
+            </div>
+
+            <!-- ========== トラブルシューティング ========== -->
+            <div class="section">
+                <h2>🔧 トラブルシューティング</h2>
+
+                <h3>アプリが起動しない</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>アプリを完全に終了してから再度開いてください</li>
+                    <li>iPhone/iPadを再起動してください</li>
+                    <li>AppStoreから最新バージョンに更新してください</li>
+                </ol>
+
+                <h3>データが表示されない</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>「統計」タブで正しい月が選択されているか確認してください</li>
+                    <li>「入力」タブで支出が正しく保存されているか確認してください</li>
+                    <li>アプリを再起動してみてください</li>
+                </ol>
+
+                <h3>金額の入力がうまくいかない</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>数字のみを入力してください（記号や文字は入力できません）</li>
+                    <li>3桁区切り（カンマ）は自動で挿入されます</li>
+                    <li>小数点は対応していません（¥100なら「100」と入力）</li>
+                </ol>
+
+                <h3>カテゴリー選択が反応しない</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>まず大分類を選択してください</li>
+                    <li>大分類を選択すると中分類が表示されます</li>
+                    <li>画面をタップして選択ピッカーを開いてください</li>
+                </ol>
+
+                <h3>ダークモードが反映されない</h3>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>iPhone設定 > 画面表示と明るさ > ダークモードを切り替えます</li>
+                    <li>アプリを再起動すると反映されます</li>
+                </ol>
+
+                <div class="warning">
+                    💡 上記の方法で解決しない場合は、サポートまでお問い合わせください。
+                </div>
+            </div>
+
+            <!-- ========== アップデート情報 ========== -->
+            <div class="section">
+                <h2>📱 最新アップデート情報</h2>
+
+                <h3>Version 1.0.0（初回リリース）</h3>
+                <p>2025年11月16日にリリース</p>
+                <ul class="feature-list">
+                    <li>ExpenseManager正式リリース</li>
+                    <li>直感的な支出入力機能</li>
+                    <li>カテゴリー別支出分析</li>
+                    <li>フルダークモード対応</li>
+                    <li>自由なカテゴリーカスタマイズ</li>
+                    <li>13のデフォルトカテゴリー搭載</li>
+                    <li>iPhone・iPad両対応</li>
+                    <li>日本語・英語対応</li>
+                </ul>
+
+                <h3>今後の予定</h3>
+                <ul class="feature-list">
+                    <li>支出データのCSV書き出し機能</li>
+                    <li>カテゴリーのより詳細なカスタマイズ</li>
+                    <li>複数端末でのクラウド同期（検討中）</li>
+                    <li>月別レポート機能</li>
+                </ul>
+            </div>
+
+            <!-- ========== システム要件 ========== -->
+            <div class="section">
+                <h2>⚙️ システム要件</h2>
+
+                <table>
+                    <tr>
+                        <th>項目</th>
+                        <th>要件</th>
+                    </tr>
+                    <tr>
+                        <td>対応OS</td>
+                        <td>iOS 18.0以上</td>
+                    </tr>
+                    <tr>
+                        <td>デバイス</td>
+                        <td>iPhone、iPad</td>
+                    </tr>
+                    <tr>
+                        <td>容量</td>
+                        <td>約50MB</td>
+                    </tr>
+                    <tr>
+                        <td>言語</td>
+                        <td>日本語、英語</td>
+                    </tr>
+                    <tr>
+                        <td>ネットワーク</td>
+                        <td>不要（オフライン対応）</td>
+                    </tr>
+                    <tr>
+                        <td>対応画面</td>
+                        <td>すべてのRetina対応デバイス</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- ========== サポート＆リンク ========== -->
+            <div class="contact-section">
+                <h3>📞 サポートのご連絡</h3>
+                <p style="margin: 15px 0;">ご質問やご不明な点がございましたら、お気軽にお問い合わせください。</p>
+                <p>
+                    📧 <a href="mailto:support@expensemanager.example.com">support@expensemanager.example.com</a>
+                </p>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                    通常、48時間以内にご返信いたします。
+                </p>
+            </div>
+
+            <div class="links" style="justify-content: center; margin-top: 40px;">
+                <a href="privacy.html">🔐 プライバシーポリシー</a>
+                <a href="terms.html">📋 利用規約</a>
+                <a href="#top">↑ トップへ</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 ExpenseManager by Shuhei Kinugasa. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">
+                本サービスはiOS上で動作する個人向けアプリケーションです。
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
